@@ -108,6 +108,7 @@ class RecurringTask extends Task{
 
     RecurringTask() {
         System.out.print("Task is Commercial or Domestic: ");
+        System.out.println("Checking...");
         environment = input.nextLine();
         System.out.print("Enter duration of your task in Days: ");
         duration = input.nextInt();
