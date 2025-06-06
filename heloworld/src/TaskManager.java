@@ -215,14 +215,12 @@ class Graph extends JFrame{
         view.weighty=1.0;
         view.weightx=0.8;
         view.insets=new Insets(0,0,10,10);
-        JLabel name=new JLabel("CLICK TO ADD TASK");
         JButton button=new JButton("NEW TASK");
         buttonModifier(button);
         JButton viewTask=new JButton("VIEW YOUR TASKS");
         buttonModifier(viewTask);
         JPanel homeInterface=new JPanel(new GridBagLayout());
         homeInterface.setOpaque(false);
-        homeInterface.add(name,labelGbc);
         homeInterface.add(button,gbc);
         homeInterface.add(viewTask,view);
         button.setPreferredSize(new Dimension(135,55));
@@ -356,29 +354,7 @@ class Graph extends JFrame{
              }
         });
         //new task action
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                GridBagConstraints task=new GridBagConstraints();
-                task.gridx=0;
-                task.gridy=0;
-                task.weightx=0;
-                task.weighty=0;
-                task.fill=GridBagConstraints.HORIZONTAL;
-                task.insets=new Insets(10,10,10,10);
-                JPanel newTask=new JPanel(new GridBagLayout());
-                newTask.setOpaque(false);
-                JButton personalBtn=new JButton("PERSONAL TASK");
-                JButton recurring=new JButton("RECURRING TASK");
-                JButton work=new JButton("WORK TASK");
-                newTask.add(personalBtn,task);
-                task.gridy=1;
-                newTask.add(recurring,task);
-                task.gridy=2;
-                newTask.add(work,task);
-                pageSwitch.add(newTask,"newTask");
-                changes.show(pageSwitch,"newTask");
-                personalBtn.addActionListener(new ActionListener() {
+                button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         JPanel firstWindow=new JPanel(new GridBagLayout());
@@ -488,10 +464,10 @@ class Graph extends JFrame{
                                     JOptionPane.showMessageDialog(pageSwitch, "Please select a date first.");
                                 }
                                 JOptionPane.showMessageDialog(pageSwitch,"Task Created Successfully");
-                                System.out.println("hi");
+
                                 //for notifications when task is near to 60 minutes
                                     ScheduledExecutorService alarm=Executors.newScheduledThreadPool(1);
-                                System.out.println("helloe");
+
                                     alarm.scheduleAtFixedRate(()-> {
 
                                         try(BufferedReader checker=new BufferedReader(new FileReader("tasks.txt"))){
@@ -531,8 +507,6 @@ class Graph extends JFrame{
 
                     }
                 });
-            }
-        });
         //view your tasks action
         viewTask.addActionListener(new ActionListener() {
             @Override
